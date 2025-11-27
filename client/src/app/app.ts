@@ -3,17 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { Nav } from "../layout/nav/nav";
 import { AccountService } from '../core/services/account-service';
-import { Home } from '../features/home/home';
 import { User } from '../types/user';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [Nav, Home],
+  imports: [Nav, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit {
   private accountService = inject(AccountService);
+  protected router = inject(Router);
   private http = inject(HttpClient);
   protected title = 'Ekkelsia';
   protected members = signal<User[]>([]);
